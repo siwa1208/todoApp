@@ -7,7 +7,7 @@ function TodoListItems(props){
    {
        return <div className="list" key={item.key}>
      <p>
-         <input type="text" id={item.key} value={item.text} onChange={(e)=>{
+         <input className="input is-success is-rounded tile is-horizontal is-centered" type="text" id={item.key} value={item.text} onChange={(e)=>{
              props.setUpdate(e.target.value,item.key)}}/>
         <span>
        
@@ -18,7 +18,7 @@ function TodoListItems(props){
      </p>
      
     </div>})
-    return <div class="content">
+    return <div className="content">
         
         {listItems}
     

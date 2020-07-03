@@ -98,8 +98,12 @@ class App extends React.Component {
         <Header numTodos={this.state.items.length} />
 
         <form onSubmit={this.addItem}>
-          <input type="text" placeholder="Enter task" value= {this.state.currentItem.text} onChange={this.handleInput}/>
-          <button type="submit" className='button'>Ajouter</button>
+          <div className="field">
+            <div className="control">
+            <input className="input is-success is-hovered is-rounded" type="text" placeholder="Enter task" value= {this.state.currentItem.text} onChange={this.handleInput}/>
+            </div>
+          </div>
+          <button type="submit" className='button is-success is-hovered is-rounded'><span className="icon"><i className="fas fa-trash"></i></span></button>
         </form>
 
         <p>{this.state.items.text}</p>
