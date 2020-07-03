@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import TodoListItems from './TodoListItems';
 import './App.css';
 
 class App extends React.Component {
