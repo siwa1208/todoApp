@@ -1,6 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import FlipMove from 'react-flip-move';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function TodoListItems(props){
     const items = props.items;
@@ -14,17 +13,16 @@ function TodoListItems(props){
        
         <FontAwesomeIcon className="faicons" onClick={() => {
             props.deleteItem(item.key)
-        }} icon="trash" />
+        }} icon="trash"/>
         </span>
      </p>
      
     </div>})
-    return <div>
-        <FlipMove duration={300} easing="ease-in-out">
+    return <div class="content">
+        
         {listItems}
-        </FlipMove>
     
-    </div>;
+        </div>;
   }
 
   export default TodoListItems;

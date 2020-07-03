@@ -1,6 +1,13 @@
 import React from 'react';
-import TodoListItems from './TodoListItems';
 import './App.css';
+import TodoListItems from './TodoListItems';
+import Header from './Header';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faTrash);
+
 
 class App extends React.Component {
   constructor(props){
@@ -17,7 +24,12 @@ class App extends React.Component {
     this.deleteItem = this.deleteItem.bind(this);
     this.setUpdate = this.setUpdate.bind(this);
   }
-  addItem(e){
+
+  /**
+   * 
+   *Add an item 
+   */
+  addItem = (e) => {
     e.preventDefault();
     const newItem = this.state.currentItem;
     if(newItem.text !==""){
@@ -31,7 +43,12 @@ class App extends React.Component {
     })
     }
   }
-  handleInput(e){
+
+  /**
+   * 
+   * Handler qui fait une màj du state au click du boutton 
+   */
+  handleInput = (e) =>{
     this.setState({
       currentItem:{
         text: e.target.value,
@@ -39,16 +56,30 @@ class App extends React.Component {
       }
     })
   }
-  deleteItem(key){
-    const filteredItems= this.state.items.filter(item =>
+/**
+ * 
+ * Delete items et màj du state au click du bouton
+ *  
+ */
+  deleteItem = (key) => {
+    const filteredItems = this.state.items.filter(item =>
       item.key!==key);
     this.setState({
       items: filteredItems
     })
-
   }
-  setUpdate(text,key){
-    console.log("items:"+this.state.items);
+
+  /**
+   * 
+   * @param {*} text 
+   * @param {*} key 
+   * 
+   * MÀJ d'une item parcours le tableau d'items
+   * Vérifie l'item à update via sa key 
+   * MÀJ de l'item + son state via le onChange event
+   * 
+   */
+  setUpdate = (text,key) => {
     const items = this.state.items;
     items.map(item=>{      
       if(item.key===key){
@@ -59,22 +90,21 @@ class App extends React.Component {
     this.setState({
       items: items
     })
-    
-   
   }
+
  render(){
   return (
     <div className="App">
-      <header>
-        <form id="to-do-form" onSubmit={this.addItem}>
-          <input type="text" placeholder="Enter task" value= {this.state.currentItem.text} onChange={this.handleInput}></input>
-          <button type="submit">Add</button>
+        <Header numTodos={this.state.items.length} />
+
+        <form onSubmit={this.addItem}>
+          <input type="text" placeholder="Enter task" value= {this.state.currentItem.text} onChange={this.handleInput}/>
+          <button type="submit" className='button'>Ajouter</button>
         </form>
+
         <p>{this.state.items.text}</p>
-        
-          <TodoListItems items={this.state.items} deleteItem={this.deleteItem} setUpdate={this.setUpdate}/>
-        
-      </header>
+
+        <TodoListItems items={this.state.items} deleteItem={this.deleteItem} setUpdate={this.setUpdate}/>
     </div>
   );
  }
