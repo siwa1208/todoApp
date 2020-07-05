@@ -28,7 +28,8 @@ class App extends React.Component {
   /**
    * 
    *Add an item 
-   */
+   *
+  **/
   addItem = (e) => {
     e.preventDefault();
     const newItem = this.state.currentItem;
@@ -71,11 +72,8 @@ class App extends React.Component {
 
   /**
    * 
-   * @param {*} text 
-   * @param {*} key 
-   * 
    * MÀJ d'une item parcours le tableau d'items
-   * Vérifie l'item à update via sa key 
+   * Vérifie l'item à update via sa key (index qui est la date)
    * MÀJ de l'item + son state via le onChange event
    * 
    */
@@ -83,8 +81,8 @@ class App extends React.Component {
     const items = this.state.items;
     items.map(item=>{      
       if(item.key===key){
-        console.log(item.key +"    "+key)
         item.text= text;
+        console.log(item.text + "    "+item.key +"    "+key)
       }
     })
     this.setState({
@@ -103,9 +101,9 @@ class App extends React.Component {
             <input className="input is-success is-hovered is-rounded" type="text" placeholder="Enter task" value= {this.state.currentItem.text} onChange={this.handleInput}/>
             </div>
           </div>
-          <button type="submit" className='button is-success is-hovered is-rounded'><span className="icon"><i className="fas fa-trash"></i></span></button>
+          <button type="submit" className='button is-success is-hovered is-rounded'>+</button>
         </form>
-
+        <br></br>
         <p>{this.state.items.text}</p>
 
         <TodoListItems items={this.state.items} deleteItem={this.deleteItem} setUpdate={this.setUpdate}/>
