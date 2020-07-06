@@ -60,7 +60,7 @@ class App extends React.Component {
  * pop - Removes from the End of an Array
  *  
  */
-  deleteItem = (key) => {
+  deleteItem = () => {
     const newArr = [...this.state.items];
     newArr.pop();
     this.setState({items: newArr});
@@ -76,14 +76,14 @@ class App extends React.Component {
    * MÀJ de l'item + son state via le onChange event
    * 
    */
-  setUpdate = (text,key) => {
+  setUpdate = (text,index) => {
     const items = this.state.items;
     //console.log(items);
-
     items.map((item) => {
-      if(item.key === key){
+      if(item.key === index){
         item.text = text;
-        console.log(item.key +" "+key+" "+text);
+        
+        console.log(item.key +" "+index+" "+text);
       }
     })
     this.setState({items: items});
@@ -102,8 +102,6 @@ class App extends React.Component {
           </div>
           <button type="submit" className='button is-success is-hovered is-rounded'>+</button>
         </form>
-        <br></br>
-        <p>{this.state.items.text}</p>
 
         <TodoListItems items={this.state.items} deleteItem={this.deleteItem} setUpdate={this.setUpdate}/>
     </div>
