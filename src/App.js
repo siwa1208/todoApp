@@ -16,7 +16,7 @@ class App extends React.Component {
       items:[],
       currentItem:{
         text:'',
-        key:''
+        id:''
       }
     }
     this.addItem = this.addItem.bind(this);
@@ -39,7 +39,7 @@ class App extends React.Component {
       items: items,
       currentItem:{
         text:'',
-        key:''
+        id:''
       }
     })
     }
@@ -53,7 +53,7 @@ class App extends React.Component {
     this.setState({
       currentItem:{
         text: e.target.value,
-        key: Date.now()
+        id: ''
       }
     })
   }
@@ -62,32 +62,33 @@ class App extends React.Component {
  * Delete items et màj du state au click du bouton
  *  
  */
-  deleteItem = (key) => {
-    const filteredItems = this.state.items.filter(item =>
-      item.key!==key);
-    this.setState({
-      items: filteredItems
-    })
+  deleteItem = (index) => {
+    const newArr = [...this.state.items];
+    newArr.splice(index, 1);
+    this.setState({items: newArr});
+
+    //console.log(index, newArr);
+
   }
 
   /**
    * 
    * MÀJ d'une item parcours le tableau d'items
-   * Vérifie l'item à update via sa key (index qui est la date)
+   * Vérifie l'item à update via son index
    * MÀJ de l'item + son state via le onChange event
    * 
    */
-  setUpdate = (text,key) => {
+  setUpdate = (text,index) => {
     const items = this.state.items;
-    items.map(item=>{      
-      if(item.key===key){
-        item.text= text;
-        console.log(item.text + "    "+item.key +"    "+key)
+    //console.log(items);
+
+    items.map(item => {
+      if(item.key === index){
+        item.text = text;
+        console.log(item.key +" "+index+" "+text);
       }
     })
-    this.setState({
-      items: items
-    })
+    this.setState({items: items});
   }
 
  render(){
@@ -98,7 +99,7 @@ class App extends React.Component {
         <form onSubmit={this.addItem}>
           <div className="field">
             <div className="control">
-            <input className="input is-success is-hovered is-rounded" type="text" placeholder="Enter task" value= {this.state.currentItem.text} onChange={this.handleInput}/>
+            <input className="input is-success is-hovered is-rounded" type="text" placeholder="Entrer une tâche" value= {this.state.currentItem.text} onChange={this.handleInput}/>
             </div>
           </div>
           <button type="submit" className='button is-success is-hovered is-rounded'>+</button>
@@ -111,6 +112,5 @@ class App extends React.Component {
   );
  }
 }
-
 
 export default App;
