@@ -8,7 +8,7 @@ function TodoListItems(props){
        return <div className="list" key={index}>
      <p>
          <input className="input is-success is-rounded" type="text" id={index} value={item.text} onChange={(e)=>{
-             props.setUpdate(e.target.value, item.key)}}/>             
+             props.setUpdate(e.target.value, index)}}/>             
         <span>
        
         <FontAwesomeIcon className="faicons" onClick={() => {

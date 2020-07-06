@@ -76,17 +76,11 @@ class App extends React.Component {
    * MÀJ de l'item + son state via le onChange event
    * 
    */
-  setUpdate = (text,index) => {
-    const items = this.state.items;
-    //console.log(items);
-    items.map((item) => {
-      if(item.key === index){
-        item.text = text;
-        
-        console.log(item.key +" "+index+" "+text);
-      }
-    })
-    this.setState({items: items});
+  setUpdate = (newText,index) => {
+    let newIitems = this.state.items;
+    newIitems[index].text = newText;
+
+    this.setState({items: newIitems});
   }
 
  render(){
@@ -108,5 +102,4 @@ class App extends React.Component {
   );
  }
 }
-
 export default App;
