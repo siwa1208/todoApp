@@ -15,8 +15,7 @@ class App extends React.Component {
     this.state = {
       items:[],
       currentItem:{
-        text:'',
-        id:''
+        text:''
       }
     }
     this.addItem = this.addItem.bind(this);
@@ -38,8 +37,7 @@ class App extends React.Component {
     this.setState({
       items: items,
       currentItem:{
-        text:'',
-        id:''
+        text:''
       }
     })
     }
@@ -52,19 +50,19 @@ class App extends React.Component {
   handleInput = (e) =>{
     this.setState({
       currentItem:{
-        text: e.target.value,
-        id: ''
+        text: e.target.value
       }
     })
   }
 /**
  * 
  * Delete items et màj du state au click du bouton
+ * pop - Removes from the End of an Array
  *  
  */
-  deleteItem = (index) => {
+  deleteItem = (key) => {
     const newArr = [...this.state.items];
-    newArr.splice(index, 1);
+    newArr.pop();
     this.setState({items: newArr});
 
     //console.log(index, newArr);
@@ -78,14 +76,14 @@ class App extends React.Component {
    * MÀJ de l'item + son state via le onChange event
    * 
    */
-  setUpdate = (text,index) => {
+  setUpdate = (text,key) => {
     const items = this.state.items;
     //console.log(items);
 
-    items.map(item => {
-      if(item.key === index){
+    items.map((item) => {
+      if(item.key === key){
         item.text = text;
-        console.log(item.key +" "+index+" "+text);
+        console.log(item.key +" "+key+" "+text);
       }
     })
     this.setState({items: items});

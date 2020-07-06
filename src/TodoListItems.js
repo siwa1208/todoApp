@@ -4,16 +4,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function TodoListItems(props){
     const items = props.items;
     //const index = props.items.id;
-    const listItems = items.map((item, index) =>
+    const listItems = items.map((item,index) =>
    {
        return <div className="list" key={index}>
      <p>
-         <input className="input is-success is-rounded tile" type="text" id={item.key} value={item.text} onChange={(e)=>{
-             props.setUpdate(e.target.value, console.log(index))}}/>             
+         <input className="input is-success is-rounded tile" type="text" id={index} value={item.text} onChange={(e)=>{
+             props.setUpdate(e.target.value, item.key)}}/>             
         <span>
        
         <FontAwesomeIcon className="faicons" onClick={() => {
-            props.deleteItem(console.log(index))
+            props.deleteItem(item.key)
         }} icon="trash"/>
         </span>
      </p>
