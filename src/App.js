@@ -1,5 +1,8 @@
 import React from 'react';
+import ReactTable from "react-table";
+
 import './App.css';
+
 import TodoListItems from './TodoListItems';
 import Header from './Header';
 
@@ -16,7 +19,60 @@ class App extends React.Component {
       items:[],
       currentItem:{
         text:''
-      }
+      },
+      data: [
+        {
+          title: "Todo",
+          done : false
+        },
+
+        {
+          title: "TodoList",
+          done : false
+        },
+
+        {
+          title: "Something",
+          done : false
+        },
+
+        {
+          title: "Else",
+          done : false
+        },
+
+        {
+          title: "Test",
+          done : false
+        },
+
+        {
+          title: "Toto",
+          done : false
+        },
+
+        {
+          title: "Titi",
+          done : false
+        },
+
+        {
+          title: "Tata",
+          done : false
+        }
+      ],
+
+      columns : [
+        {
+          Header: 'Titre',
+          accessor: 'title'
+        },
+
+        {
+          Header: 'Fait',
+          accessor: 'done'
+        }
+      ]
     }
     this.addItem = this.addItem.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -84,6 +140,8 @@ class App extends React.Component {
   }
 
  render(){
+  const { data } = this.state.data;
+  const { columns } = this.state.columns;
   return (
     <div className="App">
         <Header numTodos={this.state.items.length} />
@@ -98,6 +156,10 @@ class App extends React.Component {
         </form>
 
         <TodoListItems items={this.state.items} deleteItem={this.deleteItem} setUpdate={this.setUpdate}/>
+
+        <br></br>
+
+        <Table data={data} columns={columns}/>
     </div>
   );
  }
