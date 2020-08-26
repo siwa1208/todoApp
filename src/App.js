@@ -9,7 +9,6 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faTrash);
 
-
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -24,7 +23,6 @@ class App extends React.Component {
     this.deleteItem = this.deleteItem.bind(this);
     this.setUpdate = this.setUpdate.bind(this);
   }
-
   /**
    * 
    *Add an item 
@@ -68,7 +66,6 @@ class App extends React.Component {
     //console.log(index, newArr);
 
   }
-
   /**
    * 
    * MÀJ d'une item parcours le tableau d'items
