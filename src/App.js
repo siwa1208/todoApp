@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactTable from "react-table";
-
 import './App.css';
 
 import TodoListItems from './TodoListItems';
@@ -19,60 +17,7 @@ class App extends React.Component {
       items:[],
       currentItem:{
         text:''
-      },
-      data: [
-        {
-          title: "Todo",
-          done : false
-        },
-
-        {
-          title: "TodoList",
-          done : false
-        },
-
-        {
-          title: "Something",
-          done : false
-        },
-
-        {
-          title: "Else",
-          done : false
-        },
-
-        {
-          title: "Test",
-          done : false
-        },
-
-        {
-          title: "Toto",
-          done : false
-        },
-
-        {
-          title: "Titi",
-          done : false
-        },
-
-        {
-          title: "Tata",
-          done : false
-        }
-      ],
-
-      columns : [
-        {
-          Header: 'Titre',
-          accessor: 'title'
-        },
-
-        {
-          Header: 'Fait',
-          accessor: 'done'
-        }
-      ]
+      }
     }
     this.addItem = this.addItem.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -120,7 +65,6 @@ class App extends React.Component {
     const newArr = [...this.state.items];
     newArr.pop();
     this.setState({items: newArr});
-
     //console.log(index, newArr);
 
   }
@@ -140,26 +84,23 @@ class App extends React.Component {
   }
 
  render(){
-  const { data } = this.state.data;
-  const { columns } = this.state.columns;
+
   return (
-    <div className="App">
-        <Header numTodos={this.state.items.length} />
+    <div className="App"  style={{display: "flex", flexDirection: "column", justifyContent : "center", marginLeft: 350, marginRight: 350}}>
+        <Header numTodos={this.state.items.length} style={{marginLeft: 150, marginRight: 150}}/>
 
         <form onSubmit={this.addItem}>
-          <div className="field">
+          <div className="field"  style={{marginLeft: 150, marginRight: 150}}>
             <div className="control">
-            <input className="input is-success is-hovered is-rounded" type="text" placeholder="Entrer une tâche" value= {this.state.currentItem.text} onChange={this.handleInput}/>
+            <input style={{alignSelf: "center"}} className="input is-success is-hovered is-rounded" type="text" placeholder="Entrer une tâche" value= {this.state.currentItem.text} onChange={this.handleInput}/>
             </div>
           </div>
-          <button type="submit" className='button is-success is-hovered is-rounded'>+</button>
+          <button type="submit" className='button is-success is-hovered is-rounded'>AJOUTER</button>
         </form>
 
         <TodoListItems items={this.state.items} deleteItem={this.deleteItem} setUpdate={this.setUpdate}/>
 
         <br></br>
-
-        <Table data={data} columns={columns}/>
     </div>
   );
  }

@@ -6,7 +6,7 @@ function TodoListItems(props){
     const listItems = items.map((item,index) =>
    {
        return <div className="list" key={index}>
-     <p>
+     <div style={{marginLeft: 150, marginRight: 150, marginTop: "2%"}}>
          <input className="input is-success is-rounded" type="text" id={index} value={item.text} onChange={(e)=>{
              props.setUpdate(e.target.value, index)}}/>             
         <span>
@@ -15,7 +15,7 @@ function TodoListItems(props){
             props.deleteItem(item.key)
         }} icon="trash"/>
         </span>
-     </p>
+     </div>
     </div>})
     
     return <div className="content">        
