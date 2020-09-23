@@ -11,7 +11,7 @@ function TodoListItems(props){
              props.setUpdate(e.target.value, index)}}/>             
         <span>
        
-        <FontAwesomeIcon className="faicons" onClick={() => {
+        <FontAwesomeIcon className="faicons" style={{ cursor:"pointer"}} onClick={() => {
             props.deleteItem(item.key)
         }} icon="trash"/>
         </span>

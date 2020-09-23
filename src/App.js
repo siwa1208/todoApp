@@ -39,6 +39,7 @@ class App extends React.Component {
         text:''
       }
     })
+    console.log(items);
     }
   }
 
@@ -61,9 +62,10 @@ class App extends React.Component {
  */
   deleteItem = () => {
     const newArr = [...this.state.items];
-    newArr.pop();
+    newArr.splice(this.state.items, 1);
     this.setState({items: newArr});
-    //console.log(index, newArr);
+
+    //console.log(newArr);
 
   }
   /**
@@ -81,7 +83,6 @@ class App extends React.Component {
   }
 
  render(){
-
   return (
     <div className="App"  style={{display: "flex", flexDirection: "column", justifyContent : "center", marginLeft: 350, marginRight: 350}}>
         <Header numTodos={this.state.items.length} style={{marginLeft: 150, marginRight: 150}}/>
